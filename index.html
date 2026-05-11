@@ -64,6 +64,11 @@ body{font-family:'Barlow',sans-serif;background:#0f0f0f;color:#f0ebe3;overflow-x
 .btn-b{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background:transparent;color:#f0ebe3;border:1px solid rgba(245,124,0,.45);font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 2rem;border-radius:4px;cursor:pointer;transition:background .2s,border-color .2s,transform .2s;text-decoration:none}
 .btn-b:hover{background:rgba(245,124,0,.1);border-color:#f57c00;transform:translateY(-2px)}
 
+/* ─── PHONE CTA BANNER ─────────────────────────── */
+.phone-banner{background:linear-gradient(135deg,rgba(245,124,0,.12),rgba(245,124,0,.06));border:1px solid rgba(245,124,0,.35);border-radius:12px;padding:1.25rem 1.5rem}
+.phone-pulse{animation:ppulse 2s ease-in-out infinite}
+@keyframes ppulse{0%,100%{box-shadow:0 0 0 0 rgba(245,124,0,.4)}60%{box-shadow:0 0 0 12px rgba(245,124,0,0)}}
+
 /* ─── CARDS ────────────────────────────────────── */
 .svc-card{background:linear-gradient(145deg,#161616,#131313);border:1px solid rgba(245,124,0,.13);border-radius:10px;padding:2rem;transition:transform .3s,border-color .3s,box-shadow .3s}
 .svc-card:hover{transform:translateY(-6px);border-color:rgba(245,124,0,.5);box-shadow:0 20px 60px rgba(245,124,0,.1)}
@@ -108,7 +113,7 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
 /* ─── LOGO SLOT ────────────────────────────────── */
 .logo-box{width:44px;height:44px;border:2px solid #f57c00;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;background:#161616}
 .logo-box img{width:100%;height:100%;object-fit:contain}
-.logo-box-lg{width:72px;height:72px;border:2px solid rgba(245,124,0,.5);border-radius:8px;display:flex;align-items:center;justify-content:center;background:#161616}
+.logo-box-lg{width:72px;height:72px;border:2px solid rgba(245,124,0,.5);border-radius:8px;display:flex;align-items:center;justify-content:background:#161616}
 
 /* ─── ACCORDION ────────────────────────────────── */
 .acc-body{max-height:0;overflow:hidden;transition:max-height .35s ease,opacity .35s ease;opacity:0}
@@ -117,6 +122,10 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
 /* ─── MISC ─────────────────────────────────────── */
 @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
 .stat-n{font-family:'Barlow Condensed',sans-serif;font-weight:900;color:#f57c00;line-height:1}
+
+/* ─── SPINNER ──────────────────────────────────── */
+.spinner{width:20px;height:20px;border:2px solid rgba(15,15,15,.3);border-top-color:#0f0f0f;border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body class="bg-ink text-cream font-body">
@@ -126,11 +135,8 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
 ══════════════════════════════════════════════════════════ -->
 <nav id="nav" class="fixed top-0 left-0 right-0 z-50 px-5 lg:px-10 py-3">
   <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
-
-    <!-- LOGO SLOT + Wordmark -->
     <a href="#start" class="flex items-center gap-3 group">
       <div class="logo-box">
-        <!-- Replace with: <img src="YOUR_LOGO.png" alt="Logo Kozioł"/> -->
         <span class="font-display font-black text-amber text-xl leading-none select-none">K</span>
       </div>
       <div class="leading-none">
@@ -138,8 +144,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
         <div class="text-[9px] tracking-[.18em] text-steel uppercase">Budownictwo · Kraków</div>
       </div>
     </a>
-
-    <!-- Desktop nav -->
     <ul class="hidden lg:flex items-center gap-7 text-[.8rem] font-medium tracking-wide text-mist">
       <li><a href="#o-nas"      class="hover:text-amber transition-colors">O nas</a></li>
       <li><a href="#uslugi"     class="hover:text-amber transition-colors">Usługi</a></li>
@@ -148,10 +152,9 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
       <li><a href="#kariera"    class="hover:text-amber transition-colors">Kariera</a></li>
       <li><a href="#kontakt"    class="hover:text-amber transition-colors">Kontakt</a></li>
     </ul>
-
     <div class="flex items-center gap-3">
-      <a href="#kalkulator" class="hidden lg:inline-flex btn-a text-[.78rem] py-2.5 px-5">
-        <i data-lucide="calculator" class="w-4 h-4"></i>Szybka Wycena
+      <a href="tel:+48123456789" class="hidden lg:inline-flex btn-a text-[.78rem] py-2.5 px-5">
+        <i data-lucide="phone" class="w-4 h-4"></i>Zadzwoń Teraz
       </a>
       <button id="ham" class="lg:hidden p-2 text-cream" aria-label="Menu">
         <i data-lucide="menu" class="w-6 h-6" id="ham-ic-open"></i>
@@ -159,8 +162,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
       </button>
     </div>
   </div>
-
-  <!-- Mobile menu -->
   <div id="mob-menu" class="lg:hidden bg-ink-2 border border-wire rounded-xl mt-2 overflow-hidden">
     <ul class="py-2 text-sm">
       <li><a href="#o-nas"      class="block px-6 py-3 hover:bg-ink-3 hover:text-amber transition-colors" onclick="closeMob()">O nas</a></li>
@@ -169,7 +170,7 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
       <li><a href="#kalkulator" class="block px-6 py-3 hover:bg-ink-3 hover:text-amber transition-colors" onclick="closeMob()">Wycena</a></li>
       <li><a href="#kariera"    class="block px-6 py-3 hover:bg-ink-3 hover:text-amber transition-colors" onclick="closeMob()">Kariera</a></li>
       <li><a href="#kontakt"    class="block px-6 py-3 hover:bg-ink-3 hover:text-amber transition-colors" onclick="closeMob()">Kontakt</a></li>
-      <li class="px-4 py-2"><a href="#kalkulator" class="btn-a block text-center" onclick="closeMob()">Szybka Wycena</a></li>
+      <li class="px-4 py-2"><a href="tel:+48123456789" class="btn-a block text-center" onclick="closeMob()"><i data-lucide="phone" class="w-4 h-4"></i>Zadzwoń Teraz</a></li>
     </ul>
   </div>
 </nav>
@@ -180,43 +181,33 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
 ══════════════════════════════════════════════════════════ -->
 <section id="start" class="relative min-h-screen flex items-center overflow-hidden">
   <div class="hero-line hidden lg:block"></div>
-
-  <!-- Video / fallback image -->
   <video class="hero-bg" autoplay muted loop playsinline
     poster="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1800&q=80">
-    <!-- <source src="TWOJ_FILM_DRONE.mp4" type="video/mp4"> -->
   </video>
   <div class="absolute inset-0 z-0"
     style="background-image:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1800&q=80');background-size:cover;background-position:center">
   </div>
   <div class="hero-grad"></div>
-
   <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full pt-28 pb-20">
     <div class="max-w-4xl">
-
       <div class="rv flex items-center gap-3 mb-6">
         <div class="h-px w-10 bg-amber"></div>
         <span class="slbl">Kraków &amp; Małopolska · od 1994</span>
       </div>
-
       <h1 class="rv d1 font-display font-black uppercase leading-none mb-6"
           style="font-size:clamp(3.2rem,9vw,7.5rem);letter-spacing:.02em">
         BUDUJEMY<br/>
         <span class="text-amber">OD POKOLEŃ.</span><br/>
         TWORZYMY<br/>Z PRECYZJĄ.
       </h1>
-
       <p class="rv d2 text-lg text-cream/70 max-w-xl mb-10 leading-relaxed">
         Firma Kozioł — <strong class="text-cream">30 lat</strong> solidnego budownictwa przekazywanego z pokolenia na pokolenie.
         Fundamenty, żelbet, stan surowy, dachy. Żaden projekt nie jest dla nas za duży.
       </p>
-
       <div class="rv d3 flex flex-col sm:flex-row gap-4 mb-16">
-        <a href="#uslugi"  class="btn-a"><i data-lucide="hard-hat" class="w-4 h-4"></i>Nasze Usługi</a>
-        <a href="#kariera" class="btn-b"><i data-lucide="users"    class="w-4 h-4"></i>Dołącz do Zespołu</a>
+        <a href="tel:+48123456789" class="btn-a"><i data-lucide="phone" class="w-4 h-4"></i>Zadzwoń – Bezpłatna Wycena</a>
+        <a href="#kariera" class="btn-b"><i data-lucide="users" class="w-4 h-4"></i>Dołącz do Zespołu</a>
       </div>
-
-      <!-- Stats row -->
       <div class="rv d4 flex flex-wrap gap-10 border-t border-wire/50 pt-10">
         <div><div class="stat-n text-6xl">30+</div><div class="text-xs tracking-widest text-steel uppercase mt-1">Lat Tradycji</div></div>
         <div class="hidden sm:block w-px bg-wire self-stretch"></div>
@@ -228,8 +219,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
       </div>
     </div>
   </div>
-
-  <!-- Scroll cue -->
   <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-50">
     <span class="text-[9px] tracking-[.2em] uppercase text-mist">Przewiń</span>
     <div class="w-px h-10 bg-gradient-to-b from-amber to-transparent"></div>
@@ -241,15 +230,11 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
      O NAS
 ══════════════════════════════════════════════════════════ -->
 <section id="o-nas" class="py-28 lg:py-36 px-6 lg:px-12 bg-ink-2 relative overflow-hidden">
-  <!-- Pattern -->
   <div class="absolute inset-0 opacity-[.025]"
        style="background-image:repeating-linear-gradient(45deg,#f57c00 0,#f57c00 1px,transparent 0,transparent 50%);background-size:22px 22px">
   </div>
-
   <div class="max-w-7xl mx-auto relative z-10">
     <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-
-      <!-- Text -->
       <div>
         <div class="rv"><div class="oline"></div><p class="slbl mb-3">Nasza Historia</p>
           <h2 class="font-display font-black uppercase text-5xl md:text-6xl lg:text-7xl leading-none mb-8">
@@ -281,11 +266,9 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
           </div>
         </div>
         <div class="rv d4">
-          <a href="#kontakt" class="btn-a"><i data-lucide="phone" class="w-4 h-4"></i>Porozmawiajmy o projekcie</a>
+          <a href="tel:+48123456789" class="btn-a"><i data-lucide="phone" class="w-4 h-4"></i>Zadzwoń – Porozmawiamy o projekcie</a>
         </div>
       </div>
-
-      <!-- Photo collage -->
       <div class="rv-r">
         <div class="grid grid-cols-2 gap-3">
           <div class="col-span-2 rounded-xl overflow-hidden border border-amber/15 h-52">
@@ -301,7 +284,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
                  alt="Sprzęt" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"/>
           </div>
         </div>
-        <!-- Quote -->
         <div class="mt-3 bg-ink-3 border border-amber/25 rounded-xl p-5">
           <div class="text-amber text-2xl font-display font-black leading-none mb-2">"</div>
           <p class="text-cream/75 text-sm leading-relaxed italic">
@@ -315,7 +297,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -380,8 +361,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
       <h2 class="font-display font-black uppercase text-5xl md:text-6xl lg:text-7xl leading-none">NASZE <span class="text-amber">USŁUGI</span></h2>
     </div>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-
-      <!-- Fundamenty -->
       <div class="rv d1 svc-card">
         <div class="flex items-center gap-4 mb-5">
           <div class="w-12 h-12 bg-amber/10 border border-amber/30 rounded-lg flex items-center justify-center shrink-0">
@@ -400,8 +379,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
           <span class="font-display font-black text-amber text-lg">900 – 1 100 zł/m²</span>
         </div>
       </div>
-
-      <!-- Stan Surowy -->
       <div class="rv d2 svc-card">
         <div class="flex items-center gap-4 mb-5">
           <div class="w-12 h-12 bg-amber/10 border border-amber/30 rounded-lg flex items-center justify-center shrink-0">
@@ -420,8 +397,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
           <span class="font-display font-black text-amber text-lg">2 800 – 3 500 zł/m²</span>
         </div>
       </div>
-
-      <!-- Dachy -->
       <div class="rv d3 svc-card">
         <div class="flex items-center gap-4 mb-5">
           <div class="w-12 h-12 bg-amber/10 border border-amber/30 rounded-lg flex items-center justify-center shrink-0">
@@ -440,8 +415,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
           <span class="font-display font-black text-amber text-lg">500 – 700 zł/m²</span>
         </div>
       </div>
-
-      <!-- Żelbet -->
       <div class="rv d1 svc-card">
         <div class="flex items-center gap-4 mb-5">
           <div class="w-12 h-12 bg-amber/10 border border-amber/30 rounded-lg flex items-center justify-center shrink-0">
@@ -460,8 +433,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
           <span class="font-display font-black text-amber text-lg">700 – 900 zł/m²</span>
         </div>
       </div>
-
-      <!-- Remonty -->
       <div class="rv d2 svc-card">
         <div class="flex items-center gap-4 mb-5">
           <div class="w-12 h-12 bg-amber/10 border border-amber/30 rounded-lg flex items-center justify-center shrink-0">
@@ -479,18 +450,15 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
           <span class="text-xs text-steel">Wycena indywidualna</span>
         </div>
       </div>
-
-      <!-- CTA card -->
       <div class="rv d3 rounded-xl p-8 bg-gradient-to-br from-amber to-amber-lo flex flex-col justify-between">
         <div>
           <h3 class="font-display font-black uppercase text-3xl text-ink leading-tight mb-3">MASZ INNY PROJEKT?</h3>
           <p class="text-ink/70 text-sm leading-relaxed mb-6">Budownictwo to nasz język ojczysty. Jeśli Twój projekt jest niestandardowy — właśnie dla takich zadań jesteśmy.</p>
         </div>
-        <a href="#kontakt" class="inline-flex items-center gap-2 bg-ink text-cream text-sm font-medium px-5 py-3 rounded hover:bg-ink-2 transition-colors">
+        <a href="tel:+48123456789" class="inline-flex items-center gap-2 bg-ink text-cream text-sm font-medium px-5 py-3 rounded hover:bg-ink-2 transition-colors">
           <i data-lucide="phone" class="w-4 h-4 text-amber"></i>Zadzwoń teraz
         </a>
       </div>
-
     </div>
   </div>
 </section>
@@ -507,11 +475,9 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
         <p class="slbl mb-2">Portfolio</p>
         <h2 class="font-display font-black uppercase text-5xl md:text-6xl leading-none">NASZE <span class="text-amber">REALIZACJE</span></h2>
       </div>
-      <a href="#kontakt" class="btn-a hidden sm:inline-flex"><i data-lucide="camera" class="w-4 h-4"></i>Pełne Portfolio</a>
+      <a href="tel:+48123456789" class="btn-a hidden sm:inline-flex"><i data-lucide="phone" class="w-4 h-4"></i>Zapytaj o Projekt</a>
     </div>
   </div>
-
-  <!-- Row 1 – forward -->
   <div class="relative overflow-hidden mb-3">
     <div class="absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none" style="background:linear-gradient(to right,#0f0f0f,transparent)"></div>
     <div class="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none" style="background:linear-gradient(to left,#0f0f0f,transparent)"></div>
@@ -534,8 +500,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
       </div>
     </div>
   </div>
-
-  <!-- Row 2 – reverse -->
   <div class="relative overflow-hidden">
     <div class="absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none" style="background:linear-gradient(to right,#0f0f0f,transparent)"></div>
     <div class="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none" style="background:linear-gradient(to left,#0f0f0f,transparent)"></div>
@@ -564,21 +528,18 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
 ══════════════════════════════════════════════════════════ -->
 <section id="kalkulator" class="py-28 lg:py-36 px-6 lg:px-12 bg-ink-2 relative overflow-hidden">
   <div class="absolute right-0 top-1/4 font-display font-black text-[18rem] text-white/[.018] leading-none select-none pointer-events-none hidden lg:block">PLN</div>
-
   <div class="max-w-5xl mx-auto relative z-10">
     <div class="rv text-center mb-14">
       <div class="oline mx-auto"></div>
       <p class="slbl mb-3">Wstępna Wycena 2026</p>
       <h2 class="font-display font-black uppercase text-5xl md:text-6xl leading-none">KALKULATOR <span class="text-amber">KOSZTÓW</span></h2>
-      <p class="text-cream/60 mt-4 max-w-xl mx-auto text-[.95rem]">Uzyskaj orientacyjny koszt w 30 sekund. Ceny aktualne dla rynku krakowskiego 2026. Dokładna wycena po bezpłatnej konsultacji.</p>
+      <p class="text-cream/60 mt-4 max-w-xl mx-auto text-[.95rem]">Uzyskaj orientacyjny koszt w 30 sekund. Ceny aktualne dla rynku krakowskiego 2026. Dokładna wycena po bezpłatnej konsultacji telefonicznej.</p>
     </div>
 
     <div class="rv bg-ink border border-amber/15 rounded-2xl p-8 lg:p-12">
       <div class="grid lg:grid-cols-2 gap-12">
-
         <!-- Inputs -->
         <div class="space-y-8">
-          <!-- Work type -->
           <div>
             <label class="block text-xs tracking-widest uppercase text-steel mb-4">1. Rodzaj prac</label>
             <div class="grid grid-cols-2 gap-3" id="wt-grid">
@@ -608,8 +569,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
               </button>
             </div>
           </div>
-
-          <!-- Area slider -->
           <div>
             <div class="flex items-center justify-between mb-3">
               <label class="text-xs tracking-widest uppercase text-steel">2. Powierzchnia</label>
@@ -618,8 +577,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
             <input type="range" id="area-sl" min="30" max="800" value="150" step="10" oninput="calcEst()"/>
             <div class="flex justify-between text-xs text-steel mt-2"><span>30 m²</span><span>800 m²</span></div>
           </div>
-
-          <!-- Standard -->
           <div>
             <label class="block text-xs tracking-widest uppercase text-steel mb-3">3. Standard wykonania</label>
             <select id="std-sel" onchange="calcEst()" class="fi">
@@ -628,26 +585,32 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
               <option value="1.50">Premium — najwyższa jakość (+50%)</option>
             </select>
           </div>
+
+          <!-- ── PHONE CTA for estimator ── -->
+          <div class="phone-banner flex items-center gap-4">
+            <div class="w-12 h-12 bg-amber rounded-xl flex items-center justify-center shrink-0 phone-pulse">
+              <i data-lucide="phone" class="w-6 h-6 text-ink"></i>
+            </div>
+            <div>
+              <div class="font-display font-black text-amber text-lg leading-tight">Zadzwoń po dokładną wycenę</div>
+              <div class="text-sm text-cream/70 mt-0.5">Nasz specjalista oddzwoni w ciągu 1h roboczej</div>
+              <a href="tel:+48123456789" class="text-amber font-semibold text-sm hover:underline mt-1 inline-block">+48 123 456 789</a>
+            </div>
+          </div>
         </div>
 
         <!-- Result -->
         <div class="flex flex-col gap-6">
           <div class="bg-ink-2 border border-amber/12 rounded-xl p-7 flex-1">
             <div class="text-xs text-steel uppercase tracking-widest mb-5">Wstępna Wycena</div>
-
             <div class="text-steel text-sm mb-1">Koszt od:</div>
             <div id="est-low"  class="font-display font-black text-5xl text-amber leading-none mb-1">–</div>
             <div class="text-steel text-sm mb-1 mt-3">Koszt do:</div>
             <div id="est-high" class="font-display font-black text-4xl text-cream/80 leading-none mb-5">–</div>
-
             <div id="est-note" class="text-xs text-steel/60 mb-6">← Wybierz rodzaj prac</div>
-
-            <!-- Bar -->
             <div class="bg-wire/40 rounded-full h-1.5 mb-6 overflow-hidden">
               <div id="est-bar" class="h-full rounded-full bg-gradient-to-r from-amber to-amber-hi transition-all duration-700" style="width:0%"></div>
             </div>
-
-            <!-- Breakdown -->
             <ul class="space-y-2 text-xs">
               <li class="flex justify-between text-cream/60"><span>Typ prac:</span><span id="e-type" class="text-cream">–</span></li>
               <li class="flex justify-between text-cream/60"><span>Powierzchnia:</span><span id="e-area" class="text-cream">–</span></li>
@@ -658,11 +621,29 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
 
           <p class="text-xs text-steel/50 leading-relaxed">* Ceny orientacyjne (rynek krakowski 2026). Uwzględniają robociznę i materiały w standardowym zakresie. Dokładna wycena wyłącznie po konsultacji i oględzinach.</p>
 
-          <a href="#kontakt" class="btn-a w-full justify-center">
-            <i data-lucide="send" class="w-4 h-4"></i>Poproś o Dokładną Wycenę
+          <!-- PRIMARY: phone call -->
+          <a href="tel:+48123456789" class="btn-a w-full justify-center text-base py-4">
+            <i data-lucide="phone" class="w-5 h-5"></i>Zadzwoń – Bezpłatna Konsultacja
           </a>
-        </div>
 
+          <!-- SECONDARY: send estimate via Formspree -->
+          <div id="est-form-wrap">
+            <p class="text-xs text-steel text-center mb-3">Lub wyślij zapytanie — oddzwonimy do Ciebie</p>
+            <div class="grid sm:grid-cols-2 gap-3 mb-3">
+              <input type="text" id="est-name" class="fi text-sm" placeholder="Imię i nazwisko"/>
+              <input type="tel"  id="est-phone" class="fi text-sm" placeholder="Numer telefonu *"/>
+            </div>
+            <button onclick="submitEst()" id="est-submit-btn" class="btn-b w-full justify-center text-xs py-3">
+              <i data-lucide="send" class="w-4 h-4"></i>Wyślij zapytanie – oddzwonimy
+            </button>
+          </div>
+
+          <div id="est-ok" class="hidden bg-amber/10 border border-amber/30 rounded-xl p-5 text-center">
+            <i data-lucide="check-circle" class="w-8 h-8 text-amber mx-auto mb-2"></i>
+            <div class="font-display font-black text-amber text-xl mb-1">Zapytanie Wysłane!</div>
+            <p class="text-cream/70 text-sm">Zadzwonimy do Ciebie wkrótce.<br/>Lub zadzwoń sam: <a href="tel:+48123456789" class="text-amber font-semibold hover:underline">+48 123 456 789</a></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -680,8 +661,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
       <h2 class="font-display font-black uppercase text-5xl md:text-6xl leading-none">CO MÓWIĄ <span class="text-amber">O NAS</span></h2>
     </div>
   </div>
-
-  <!-- Stars banner -->
   <div class="rv flex items-center justify-center gap-2 mb-10">
     <div class="flex text-amber gap-1">
       <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i>
@@ -690,72 +669,22 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
     </div>
     <span class="text-sm text-mist">4.9 / 5 · ponad 120 opinii Google</span>
   </div>
-
-  <!-- Marquee -->
   <div class="relative overflow-hidden">
     <div class="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none" style="background:linear-gradient(to right,#0f0f0f,transparent)"></div>
     <div class="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none" style="background:linear-gradient(to left,#0f0f0f,transparent)"></div>
     <div class="flex overflow-hidden">
       <div class="mq-track fwd" style="animation-duration:50s">
-
-        <!-- Cards × 2 for seamless loop -->
-        <div class="rev-card">
-          <div class="flex text-amber gap-0.5 mb-3"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></div>
-          <p class="text-cream/70 text-sm leading-relaxed mb-4">"Firma Kozioł wybudowała nam dom od fundamentów po dach. Terminowość, jakość i komunikacja były wzorowe. Szczerze polecam każdemu inwestorowi."</p>
-          <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-black text-sm">M</div><div><div class="text-sm font-medium">Marek W.</div><div class="text-xs text-steel">Kraków-Krowodrza · 2024</div></div></div>
-        </div>
-
-        <div class="rev-card">
-          <div class="flex text-amber gap-0.5 mb-3"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></div>
-          <p class="text-cream/70 text-sm leading-relaxed mb-4">"Ściany żelbetowe wykonane perfekcyjnie. Pan Kozioł osobiście nadzorował każdy etap. Widać specjalistę z prawdziwym powołaniem i inżynierskim zapleczem."</p>
-          <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-black text-sm">A</div><div><div class="text-sm font-medium">Anna K.</div><div class="text-xs text-steel">Wieliczka · 2024</div></div></div>
-        </div>
-
-        <div class="rev-card">
-          <div class="flex text-amber gap-0.5 mb-3"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></div>
-          <p class="text-cream/70 text-sm leading-relaxed mb-4">"Remont dachu po burzy — sprawna reakcja, ekipa na miejscu następnego dnia. Tygodniowy termin, uczciwa cena i efekt, który przeszedł nasze oczekiwania."</p>
-          <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-black text-sm">T</div><div><div class="text-sm font-medium">Tomasz P.</div><div class="text-xs text-steel">Niepołomice · 2024</div></div></div>
-        </div>
-
-        <div class="rev-card">
-          <div class="flex text-amber gap-0.5 mb-3"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></div>
-          <p class="text-cream/70 text-sm leading-relaxed mb-4">"Stan surowy gotowy w czasie krótszym niż zakładał harmonogram. Żaden inny wykonawca nie zaproponował nam takiej organizacji pracy i własnego sprzętu."</p>
-          <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-black text-sm">R</div><div><div class="text-sm font-medium">Robert i Ewa S.</div><div class="text-xs text-steel">Skawina · 2023</div></div></div>
-        </div>
-
-        <div class="rev-card">
-          <div class="flex text-amber gap-0.5 mb-3"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></div>
-          <p class="text-cream/70 text-sm leading-relaxed mb-4">"Fundamenty pod halę produkcyjną — wymagający projekt. Żelbet na wysokim poziomie, harmonogram dotrzymany, cena zgodna z ofertą. Będziemy współpracować przy kolejnych etapach."</p>
-          <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-black text-sm">B</div><div><div class="text-sm font-medium">Bartosz M., Prokurent</div><div class="text-xs text-steel">Kraków · 2025</div></div></div>
-        </div>
-
-        <!-- Duplicate for loop -->
-        <div class="rev-card">
-          <div class="flex text-amber gap-0.5 mb-3"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></div>
-          <p class="text-cream/70 text-sm leading-relaxed mb-4">"Firma Kozioł wybudowała nam dom od fundamentów po dach. Terminowość, jakość i komunikacja były wzorowe. Szczerze polecam każdemu inwestorowi."</p>
-          <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-black text-sm">M</div><div><div class="text-sm font-medium">Marek W.</div><div class="text-xs text-steel">Kraków-Krowodrza · 2024</div></div></div>
-        </div>
-        <div class="rev-card">
-          <div class="flex text-amber gap-0.5 mb-3"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></div>
-          <p class="text-cream/70 text-sm leading-relaxed mb-4">"Ściany żelbetowe wykonane perfekcyjnie. Pan Kozioł osobiście nadzorował każdy etap. Widać specjalistę z prawdziwym powołaniem i inżynierskim zapleczem."</p>
-          <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-black text-sm">A</div><div><div class="text-sm font-medium">Anna K.</div><div class="text-xs text-steel">Wieliczka · 2024</div></div></div>
-        </div>
-        <div class="rev-card">
-          <div class="flex text-amber gap-0.5 mb-3"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></div>
-          <p class="text-cream/70 text-sm leading-relaxed mb-4">"Remont dachu po burzy — sprawna reakcja, ekipa na miejscu następnego dnia. Tygodniowy termin, uczciwa cena i efekt, który przeszedł nasze oczekiwania."</p>
-          <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-black text-sm">T</div><div><div class="text-sm font-medium">Tomasz P.</div><div class="text-xs text-steel">Niepołomice · 2024</div></div></div>
-        </div>
-        <div class="rev-card">
-          <div class="flex text-amber gap-0.5 mb-3"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></div>
-          <p class="text-cream/70 text-sm leading-relaxed mb-4">"Stan surowy gotowy w czasie krótszym niż zakładał harmonogram. Żaden inny wykonawca nie zaproponował nam takiej organizacji pracy i własnego sprzętu."</p>
-          <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-black text-sm">R</div><div><div class="text-sm font-medium">Robert i Ewa S.</div><div class="text-xs text-steel">Skawina · 2023</div></div></div>
-        </div>
-        <div class="rev-card">
-          <div class="flex text-amber gap-0.5 mb-3"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></div>
-          <p class="text-cream/70 text-sm leading-relaxed mb-4">"Fundamenty pod halę produkcyjną — wymagający projekt. Żelbet na wysokim poziomie, harmonogram dotrzymany, cena zgodna z ofertą. Będziemy współpracować przy kolejnych etapach."</p>
-          <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-black text-sm">B</div><div><div class="text-sm font-medium">Bartosz M., Prokurent</div><div class="text-xs text-steel">Kraków · 2025</div></div></div>
-        </div>
-
+        <div class="rev-card"><div class="flex text-amber gap-0.5 mb-3"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></div><p class="text-cream/70 text-sm leading-relaxed mb-4">"Firma Kozioł wybudowała nam dom od fundamentów po dach. Terminowość, jakość i komunikacja były wzorowe. Szczerze polecam każdemu inwestorowi."</p><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-black text-sm">M</div><div><div class="text-sm font-medium">Marek W.</div><div class="text-xs text-steel">Kraków-Krowodrza · 2024</div></div></div></div>
+        <div class="rev-card"><div class="flex text-amber gap-0.5 mb-3"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></div><p class="text-cream/70 text-sm leading-relaxed mb-4">"Ściany żelbetowe wykonane perfekcyjnie. Pan Kozioł osobiście nadzorował każdy etap. Widać specjalistę z prawdziwym powołaniem i inżynierskim zapleczem."</p><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-black text-sm">A</div><div><div class="text-sm font-medium">Anna K.</div><div class="text-xs text-steel">Wieliczka · 2024</div></div></div></div>
+        <div class="rev-card"><div class="flex text-amber gap-0.5 mb-3"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></div><p class="text-cream/70 text-sm leading-relaxed mb-4">"Remont dachu po burzy — sprawna reakcja, ekipa na miejscu następnego dnia. Tygodniowy termin, uczciwa cena i efekt, który przeszedł nasze oczekiwania."</p><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-black text-sm">T</div><div><div class="text-sm font-medium">Tomasz P.</div><div class="text-xs text-steel">Niepołomice · 2024</div></div></div></div>
+        <div class="rev-card"><div class="flex text-amber gap-0.5 mb-3"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></div><p class="text-cream/70 text-sm leading-relaxed mb-4">"Stan surowy gotowy w czasie krótszym niż zakładał harmonogram. Żaden inny wykonawca nie zaproponował nam takiej organizacji pracy i własnego sprzętu."</p><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-black text-sm">R</div><div><div class="text-sm font-medium">Robert i Ewa S.</div><div class="text-xs text-steel">Skawina · 2023</div></div></div></div>
+        <div class="rev-card"><div class="flex text-amber gap-0.5 mb-3"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></div><p class="text-cream/70 text-sm leading-relaxed mb-4">"Fundamenty pod halę produkcyjną — wymagający projekt. Żelbet na wysokim poziomie, harmonogram dotrzymany, cena zgodna z ofertą. Będziemy współpracować przy kolejnych etapach."</p><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-black text-sm">B</div><div><div class="text-sm font-medium">Bartosz M., Prokurent</div><div class="text-xs text-steel">Kraków · 2025</div></div></div></div>
+        <!-- duplicates for loop -->
+        <div class="rev-card"><div class="flex text-amber gap-0.5 mb-3"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></div><p class="text-cream/70 text-sm leading-relaxed mb-4">"Firma Kozioł wybudowała nam dom od fundamentów po dach. Terminowość, jakość i komunikacja były wzorowe. Szczerze polecam każdemu inwestorowi."</p><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-black text-sm">M</div><div><div class="text-sm font-medium">Marek W.</div><div class="text-xs text-steel">Kraków-Krowodrza · 2024</div></div></div></div>
+        <div class="rev-card"><div class="flex text-amber gap-0.5 mb-3"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></div><p class="text-cream/70 text-sm leading-relaxed mb-4">"Ściany żelbetowe wykonane perfekcyjnie. Pan Kozioł osobiście nadzorował każdy etap. Widać specjalistę z prawdziwym powołaniem i inżynierskim zapleczem."</p><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-black text-sm">A</div><div><div class="text-sm font-medium">Anna K.</div><div class="text-xs text-steel">Wieliczka · 2024</div></div></div></div>
+        <div class="rev-card"><div class="flex text-amber gap-0.5 mb-3"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></div><p class="text-cream/70 text-sm leading-relaxed mb-4">"Remont dachu po burzy — sprawna reakcja, ekipa na miejscu następnego dnia. Tygodniowy termin, uczciwa cena i efekt, który przeszedł nasze oczekiwania."</p><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-black text-sm">T</div><div><div class="text-sm font-medium">Tomasz P.</div><div class="text-xs text-steel">Niepołomice · 2024</div></div></div></div>
+        <div class="rev-card"><div class="flex text-amber gap-0.5 mb-3"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></div><p class="text-cream/70 text-sm leading-relaxed mb-4">"Stan surowy gotowy w czasie krótszym niż zakładał harmonogram. Żaden inny wykonawca nie zaproponował nam takiej organizacji pracy i własnego sprzętu."</p><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-black text-sm">R</div><div><div class="text-sm font-medium">Robert i Ewa S.</div><div class="text-xs text-steel">Skawina · 2023</div></div></div></div>
+        <div class="rev-card"><div class="flex text-amber gap-0.5 mb-3"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></div><p class="text-cream/70 text-sm leading-relaxed mb-4">"Fundamenty pod halę produkcyjną — wymagający projekt. Żelbet na wysokim poziomie, harmonogram dotrzymany, cena zgodna z ofertą. Będziemy współpracować przy kolejnych etapach."</p><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center text-amber font-display font-black text-sm">B</div><div><div class="text-sm font-medium">Bartosz M., Prokurent</div><div class="text-xs text-steel">Kraków · 2025</div></div></div></div>
       </div>
     </div>
   </div>
@@ -769,13 +698,34 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
   <div class="absolute inset-0 flex items-center justify-center opacity-[.022] pointer-events-none select-none overflow-hidden">
     <span class="font-display font-black text-[24vw] leading-none whitespace-nowrap">KARIERA</span>
   </div>
-
   <div class="max-w-7xl mx-auto relative z-10">
     <div class="rv text-center mb-14">
       <div class="oline mx-auto"></div>
       <p class="slbl mb-3">Dołącz do Zespołu</p>
       <h2 class="font-display font-black uppercase text-5xl md:text-6xl lg:text-7xl leading-none">SZUKAMY <span class="text-amber">NAJLEPSZYCH</span></h2>
       <p class="text-cream/60 mt-4 max-w-xl mx-auto">Buduj swoją karierę z firmą, która szanuje rzemiosło, inwestuje w ludzi i daje stały dochód przez cały rok.</p>
+    </div>
+
+    <!-- ── PHONE CTA – Kariera (PROMINENT) ── -->
+    <div class="rv max-w-2xl mx-auto mb-12">
+      <div class="rounded-2xl overflow-hidden" style="background:linear-gradient(135deg,#f57c00,#e65100)">
+        <div class="px-8 py-7 flex flex-col sm:flex-row items-center gap-6">
+          <div class="w-16 h-16 bg-black/20 rounded-2xl flex items-center justify-center shrink-0 phone-pulse">
+            <i data-lucide="phone" class="w-8 h-8 text-white"></i>
+          </div>
+          <div class="text-center sm:text-left">
+            <div class="font-display font-black text-2xl text-white leading-tight uppercase">Zadzwoń i zapytaj o pracę!</div>
+            <div class="text-white/80 text-sm mt-1 mb-3">Najszybsza droga — porozmawiaj z nami bezpośrednio. Odpowiadamy od ręki.</div>
+            <a href="tel:+48123456789"
+               class="inline-flex items-center gap-2 bg-white text-amber-lo font-display font-black text-xl px-6 py-3 rounded-xl hover:bg-cream transition-colors">
+              <i data-lucide="phone" class="w-5 h-5"></i>+48 123 456 789
+            </a>
+          </div>
+        </div>
+        <div class="bg-black/15 px-8 py-3 text-center text-white/70 text-xs">
+          Pn–Pt 7:00–17:00 · Sob 8:00–13:00 · Rekruter odpowiada w ciągu kilku minut
+        </div>
+      </div>
     </div>
 
     <!-- Job cards -->
@@ -792,7 +742,9 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
           <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-amber shrink-0 mt-0.5"></i>Praca ciągła – cały rok</li>
           <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-amber shrink-0 mt-0.5"></i>Nowoczesny sprzęt na budowie</li>
         </ul>
-        <button onclick="selectJob('Murarz')" class="btn-b w-full justify-center text-xs py-2.5">Aplikuj →</button>
+        <a href="tel:+48123456789" class="btn-a w-full justify-center text-xs py-2.5">
+          <i data-lucide="phone" class="w-4 h-4"></i>Zadzwoń – Aplikuj
+        </a>
       </div>
       <div class="rv d2 feat-card rounded-xl">
         <div class="w-12 h-12 bg-amber/10 border border-amber/30 rounded-xl flex items-center justify-center mb-4">
@@ -806,7 +758,9 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
           <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-amber shrink-0 mt-0.5"></i>Sprzęt do pracy na wysokości</li>
           <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-amber shrink-0 mt-0.5"></i>Elastyczny harmonogram</li>
         </ul>
-        <button onclick="selectJob('Dekarz')" class="btn-b w-full justify-center text-xs py-2.5">Aplikuj →</button>
+        <a href="tel:+48123456789" class="btn-a w-full justify-center text-xs py-2.5">
+          <i data-lucide="phone" class="w-4 h-4"></i>Zadzwoń – Aplikuj
+        </a>
       </div>
       <div class="rv d3 feat-card rounded-xl">
         <div class="w-12 h-12 bg-amber/10 border border-amber/30 rounded-xl flex items-center justify-center mb-4">
@@ -820,21 +774,31 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
           <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-amber shrink-0 mt-0.5"></i>Szkolenia i certyfikaty</li>
           <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-amber shrink-0 mt-0.5"></i>Ścieżka awansu</li>
         </ul>
-        <button onclick="selectJob('Specjalista Budowlany')" class="btn-b w-full justify-center text-xs py-2.5">Aplikuj →</button>
+        <a href="tel:+48123456789" class="btn-a w-full justify-center text-xs py-2.5">
+          <i data-lucide="phone" class="w-4 h-4"></i>Zadzwoń – Aplikuj
+        </a>
       </div>
     </div>
 
-    <!-- ── ADVANCED APPLICATION FORM ── -->
+    <!-- ── APPLICATION FORM (backup – phone preferred) ── -->
     <div class="rv max-w-3xl mx-auto">
-      <div class="bg-ink border border-amber/18 rounded-2xl p-8 lg:p-10">
+      <div class="bg-ink border border-wire/60 rounded-2xl p-8 lg:p-10">
+
+        <div class="flex items-start gap-4 mb-6 p-4 bg-amber/8 border border-amber/25 rounded-xl">
+          <i data-lucide="info" class="w-5 h-5 text-amber shrink-0 mt-0.5"></i>
+          <div>
+            <div class="font-semibold text-sm mb-1">Wolisz napisać? Możesz — ale telefon jest szybszy!</div>
+            <p class="text-cream/60 text-xs leading-relaxed">Formularz wyślemy na email. Jeśli chcesz porozmawiać od razu, zadzwoń:
+              <a href="tel:+48123456789" class="text-amber font-semibold hover:underline">+48 123 456 789</a>
+              — rekruter odbierze w godzinach biura.
+            </p>
+          </div>
+        </div>
+
         <h3 class="font-display font-black uppercase text-3xl mb-1">FORMULARZ APLIKACYJNY</h3>
-        <p class="text-cream/60 text-sm mb-8">Wypełnij formularz — Rekruter zadzwoni do Ciebie w ciągu 24h roboczych.</p>
+        <p class="text-cream/60 text-sm mb-8">Wypełnij i wyślij — oddzwonimy do Ciebie w ciągu 24h roboczych.</p>
 
-        <!-- Form -->
         <div id="appl-form">
-          <!-- Formspree action placeholder -->
-          <!-- To activate: set action="https://formspree.io/f/YOUR_FORM_ID" and add method="POST" to a real <form> -->
-
           <div class="grid sm:grid-cols-2 gap-4 mb-4">
             <div>
               <label class="block text-xs text-steel uppercase tracking-widest mb-2">Imię i Nazwisko *</label>
@@ -845,7 +809,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
               <input type="tel" id="ap-phone" class="fi" placeholder="np. +48 600 000 000"/>
             </div>
           </div>
-
           <div class="mb-4">
             <label class="block text-xs text-steel uppercase tracking-widest mb-2">Stanowisko *</label>
             <select id="ap-pos" class="fi">
@@ -857,12 +820,10 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
               <option value="Inne">Inne</option>
             </select>
           </div>
-
           <div class="mb-4">
             <label class="block text-xs text-steel uppercase tracking-widest mb-2">Wykształcenie / Szkoły</label>
-            <input type="text" id="ap-edu" class="fi" placeholder="np. Technikum Budowlane w Krakowie, Politechnika Krakowska – Budownictwo"/>
+            <input type="text" id="ap-edu" class="fi" placeholder="np. Technikum Budowlane w Krakowie"/>
           </div>
-
           <div class="mb-4">
             <label class="block text-xs text-steel uppercase tracking-widest mb-2">Lata Doświadczenia</label>
             <div class="flex items-center gap-4 mt-2">
@@ -871,17 +832,25 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
               <span class="font-display font-black text-amber text-2xl w-16 text-right" id="ap-exp-lbl">5</span>
             </div>
           </div>
-
           <div class="mb-6">
             <label class="block text-xs text-steel uppercase tracking-widest mb-2">Opis Doświadczenia *</label>
             <textarea id="ap-desc" class="fi" rows="5"
-              placeholder="Opisz swoje doświadczenie: jakie projekty realizowałeś, gdzie pracowałeś, jakie techniki znasz (np. murowanie YTONG, szalunki Peri, wylewki monolityczne, zbrojenie…)"></textarea>
+              placeholder="Opisz swoje doświadczenie: jakie projekty realizowałeś, gdzie pracowałeś, jakie techniki znasz…"></textarea>
             <p class="text-xs text-steel/60 mt-1">Im więcej szczegółów, tym szybciej rekruter oceni Twoją aplikację.</p>
           </div>
 
-          <button onclick="submitAppl()" class="btn-a w-full justify-center">
+          <button onclick="submitAppl()" id="appl-submit-btn" class="btn-a w-full justify-center mb-4">
             <i data-lucide="send" class="w-4 h-4"></i>Wyślij Aplikację
           </button>
+
+          <!-- Phone reminder under form -->
+          <div class="flex items-center gap-3 bg-ink-2 border border-wire rounded-xl p-4">
+            <i data-lucide="phone" class="w-5 h-5 text-amber shrink-0"></i>
+            <p class="text-xs text-cream/60">Albo zadzwoń teraz:
+              <a href="tel:+48123456789" class="text-amber font-semibold hover:underline">+48 123 456 789</a>
+              — to najszybsza droga do pracy w naszym zespole.
+            </p>
+          </div>
 
           <p class="text-xs text-steel/50 text-center mt-4">Twoje dane są bezpieczne i nie będą udostępniane osobom trzecim.</p>
         </div>
@@ -892,8 +861,14 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
             <i data-lucide="check" class="w-10 h-10 text-amber"></i>
           </div>
           <h4 class="font-display font-black text-3xl text-amber mb-3 uppercase">Aplikacja Wysłana!</h4>
-          <p class="text-cream/70 text-sm mb-6">Dziękujemy, <span id="appl-ok-name" class="text-cream font-medium"></span>!<br/>Nasz rekruter skontaktuje się z Tobą w ciągu 24 godzin roboczych.</p>
-          <button onclick="resetAppl()" class="text-sm text-amber hover:underline">Wyślij kolejną aplikację</button>
+          <p class="text-cream/70 text-sm mb-4">Dziękujemy, <span id="appl-ok-name" class="text-cream font-medium"></span>!<br/>Oddzwonimy do Ciebie w ciągu 24 godzin roboczych.</p>
+          <!-- Reinforce phone -->
+          <div class="mb-6 p-4 bg-amber/10 border border-amber/30 rounded-xl inline-block">
+            <p class="text-sm text-cream/80 mb-2">Chcesz przyspieszyć? Zadzwoń sam:</p>
+            <a href="tel:+48123456789" class="text-amber font-display font-black text-2xl hover:underline">+48 123 456 789</a>
+          </div>
+          <br/>
+          <button onclick="resetAppl()" class="text-sm text-steel hover:text-amber transition-colors">Wyślij kolejną aplikację</button>
         </div>
 
       </div>
@@ -926,7 +901,7 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
           <span class="font-medium text-[.95rem]">Czy ceny w kalkulatorze są wiążące?</span>
           <i data-lucide="chevron-down" class="w-5 h-5 text-amber shrink-0 transition-transform duration-300"></i>
         </button>
-        <div class="acc-body px-6 pb-5"><p class="text-cream/65 text-sm leading-relaxed">Nie — są orientacyjne, oparte na stawkach rynku krakowskiego 2026. Dokładna wycena wymaga oględzin działki, analizy projektu i specyfikacji materiałów. Wycena jest bezpłatna i niezobowiązująca.</p></div>
+        <div class="acc-body px-6 pb-5"><p class="text-cream/65 text-sm leading-relaxed">Nie — są orientacyjne, oparte na stawkach rynku krakowskiego 2026. Dokładna wycena wymaga oględzin działki, analizy projektu i specyfikacji materiałów. Wycena jest bezpłatna i niezobowiązująca — zadzwoń, a umówimy konsultację.</p></div>
       </div>
       <div class="faq-item bg-ink-2 border border-wire rounded-xl overflow-hidden">
         <button class="faq-q w-full flex items-center justify-between px-6 py-5 text-left gap-4" onclick="toggleFaq(this)">
@@ -959,8 +934,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
     </div>
 
     <div class="grid lg:grid-cols-2 gap-12 items-start">
-
-      <!-- Info -->
       <div class="rv-l space-y-5">
         <div class="svc-card rounded-xl space-y-6">
           <div class="flex items-center gap-5">
@@ -1001,8 +974,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
             </div>
           </div>
         </div>
-
-        <!-- Social -->
         <div class="flex gap-3">
           <a href="#" class="w-11 h-11 bg-ink-3 border border-wire rounded-xl flex items-center justify-center hover:border-amber hover:text-amber transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
           <a href="#" class="w-11 h-11 bg-ink-3 border border-wire rounded-xl flex items-center justify-center hover:border-amber hover:text-amber transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
@@ -1011,7 +982,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
         </div>
       </div>
 
-      <!-- Map -->
       <div class="rv-r">
         <div class="map-ph rounded-2xl overflow-hidden h-80 lg:h-full min-h-80">
           <div class="map-grid"></div>
@@ -1025,7 +995,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
             <a href="https://maps.app.goo.gl/hVbTCKFvkvVrXCQq5" target="_blank"
                class="btn-a py-3 px-5 text-xs"><i data-lucide="external-link" class="w-4 h-4"></i>Otwórz w Mapach</a>
           </div>
-          <!-- Rings -->
           <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border border-amber/10 rounded-full"></div>
           <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 border border-amber/05 rounded-full"></div>
         </div>
@@ -1038,11 +1007,8 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
 <footer class="bg-ink border-t border-wire py-10 px-6 lg:px-12">
   <div class="max-w-7xl mx-auto">
     <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
-
-      <!-- Logo + wordmark -->
       <div class="flex items-center gap-4">
-        <div class="logo-box-lg">
-          <!-- Replace with: <img src="YOUR_LOGO.png" alt="Logo Kozioł"/> -->
+        <div class="logo-box-lg" style="width:72px;height:72px;border:2px solid rgba(245,124,0,.5);border-radius:8px;display:flex;align-items:center;justify-content:center;background:#161616">
           <span class="font-display font-black text-amber text-3xl leading-none">K</span>
         </div>
         <div>
@@ -1050,8 +1016,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
           <div class="text-[10px] tracking-[.15em] text-steel mt-1">KRAKÓW · MAŁOPOLSKA · OD 1994</div>
         </div>
       </div>
-
-      <!-- Nav -->
       <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-steel">
         <a href="#o-nas"      class="hover:text-amber transition-colors">O nas</a>
         <a href="#uslugi"     class="hover:text-amber transition-colors">Usługi</a>
@@ -1060,8 +1024,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
         <a href="#kariera"    class="hover:text-amber transition-colors">Kariera</a>
         <a href="#kontakt"    class="hover:text-amber transition-colors">Kontakt</a>
       </nav>
-
-      <!-- Legal -->
       <div class="text-xs text-steel/60 text-center lg:text-right leading-relaxed">
         © 2026 Firma Kozioł. Wszelkie prawa zastrzeżone.<br/>
         NIP: 000-000-00-00 · REGON: 000000000
@@ -1075,11 +1037,7 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
      GUIDED CHATBOT LEAD BOT
 ══════════════════════════════════════════════════════════ -->
 <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-
-  <!-- Chat window -->
   <div id="cw" class="w-80 sm:w-96 bg-ink-2 border border-amber/30 rounded-2xl overflow-hidden shadow-2xl shadow-black/70">
-
-    <!-- Header -->
     <div class="px-5 py-4 flex items-center justify-between border-b border-wire"
          style="background:linear-gradient(135deg,#1e1e1e,#161616)">
       <div class="flex items-center gap-3">
@@ -1098,14 +1056,8 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
     </div>
-
-    <!-- Messages -->
     <div id="chat-msgs" class="p-4 space-y-3 max-h-72 overflow-y-auto text-sm"></div>
-
-    <!-- Quick replies -->
     <div id="chat-qr" class="px-4 pb-3 flex flex-wrap gap-2"></div>
-
-    <!-- Input -->
     <div class="border-t border-wire px-4 py-3 flex gap-2">
       <input id="chat-in" type="text" placeholder="Napisz odpowiedź..."
         class="flex-1 bg-ink rounded-xl px-4 py-2.5 text-sm outline-none border border-wire focus:border-amber/50 transition-colors"
@@ -1116,8 +1068,6 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
       </button>
     </div>
   </div>
-
-  <!-- Toggle bubble -->
   <button id="chat-btn" onclick="chatToggle()"
     class="w-16 h-16 bg-gradient-to-br from-amber to-amber-lo rounded-full flex items-center justify-center shadow-xl shadow-amber/30 hover:shadow-amber/50 hover:scale-110 transition-all relative">
     <i data-lucide="message-circle" class="w-7 h-7 text-ink" id="ci-open"></i>
@@ -1159,7 +1109,7 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el => obs.observe(el));
 
-// ── Estimator 2026 ──────────────────────────────────────
+// ── Estimator ──────────────────────────────────────────
 let estLow = null, estHigh = null, estName = null;
 
 document.querySelectorAll('.wt-btn').forEach(btn => {
@@ -1179,7 +1129,6 @@ function calcEst() {
   const std  = +document.getElementById('std-sel').value;
   const stdName = {1:'Ekonomiczny',1.2:'Optymalny',1.5:'Premium'}[std] || 'Optymalny';
 
-  // Update area label + slider gradient
   document.getElementById('area-lbl').textContent = area + ' m²';
   const sl = document.getElementById('area-sl');
   const pct = ((area - 30) / (800 - 30)) * 100;
@@ -1203,8 +1152,57 @@ function calcEst() {
   const barPct = Math.min(95, Math.max(5, (low / 2000000) * 100));
   document.getElementById('est-bar').style.width = barPct + '%';
 }
-// init slider gradient
 (function(){ const sl=document.getElementById('area-sl'); sl.style.background=`linear-gradient(to right,#f57c00 0%,#f57c00 ${((150-30)/770)*100}%,#333 ${((150-30)/770)*100}%,#333 100%)`; })();
+
+// ── Estimator Formspree submit ──────────────────────────
+async function submitEst() {
+  const phone = document.getElementById('est-phone').value.trim();
+  const name  = document.getElementById('est-name').value.trim();
+
+  if (!phone) {
+    document.getElementById('est-phone').focus();
+    document.getElementById('est-phone').style.borderColor = '#f57c00';
+    setTimeout(() => document.getElementById('est-phone').style.borderColor = '', 2000);
+    return;
+  }
+
+  const btn = document.getElementById('est-submit-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Wysyłanie...';
+
+  const payload = {
+    _subject: 'Nowe zapytanie o wycenę – Strona Kozioł',
+    imie_nazwisko: name || '(nie podano)',
+    telefon: phone,
+    rodzaj_prac: estName || '(nie wybrano)',
+    powierzchnia: document.getElementById('area-lbl').textContent,
+    standard: document.getElementById('std-sel').options[document.getElementById('std-sel').selectedIndex].text,
+    wycena_od: document.getElementById('est-low').textContent,
+    wycena_do: document.getElementById('est-high').textContent,
+    zrodlo: 'Kalkulator kosztów – strona www'
+  };
+
+  try {
+    const res = await fetch('https://formspree.io/f/mykolaol', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (res.ok) {
+      document.getElementById('est-form-wrap').classList.add('hidden');
+      document.getElementById('est-ok').classList.remove('hidden');
+      lucide.createIcons();
+    } else {
+      throw new Error('Błąd serwera');
+    }
+  } catch(e) {
+    btn.disabled = false;
+    btn.innerHTML = '<i data-lucide="send" class="w-4 h-4"></i>Wyślij zapytanie – oddzwonimy';
+    alert('Wystąpił błąd. Proszę zadzwonić bezpośrednio: +48 123 456 789');
+    lucide.createIcons();
+  }
+}
 
 // ── FAQ Accordion ───────────────────────────────────────
 function toggleFaq(btn) {
@@ -1221,8 +1219,8 @@ function selectJob(job) {
   setTimeout(() => document.getElementById('ap-name').focus(), 700);
 }
 
-// ── Recruitment submit ──────────────────────────────────
-function submitAppl() {
+// ── Recruitment Formspree submit ────────────────────────
+async function submitAppl() {
   const name  = document.getElementById('ap-name').value.trim();
   const phone = document.getElementById('ap-phone').value.trim();
   const pos   = document.getElementById('ap-pos').value;
@@ -1232,31 +1230,46 @@ function submitAppl() {
     const form = document.getElementById('appl-form');
     form.style.animation = 'shake .4s ease';
     setTimeout(() => form.style.animation = '', 500);
-    alert('Proszę uzupełnić wymagane pola (*).');
+    alert('Proszę uzupełnić wymagane pola (*). Możesz też po prostu zadzwonić: +48 123 456 789');
     return;
   }
 
-  // ── EmailJS integration placeholder ─────────────────
-  // emailjs.send('SERVICE_ID', 'TEMPLATE_ID', {
-  //   from_name:  name,
-  //   phone:      phone,
-  //   position:   pos,
-  //   education:  document.getElementById('ap-edu').value,
-  //   experience: document.getElementById('ap-exp-lbl').textContent + ' lat',
-  //   description: desc,
-  // });
+  const btn = document.getElementById('appl-submit-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Wysyłanie...';
 
-  // ── Formspree integration placeholder ───────────────
-  // fetch('https://formspree.io/f/YOUR_FORM_ID', {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({ name, phone, pos, desc })
-  // });
+  const payload = {
+    _subject: 'Nowa aplikacja o pracę – Firma Kozioł',
+    imie_nazwisko: name,
+    telefon: phone,
+    stanowisko: pos,
+    wyksztalcenie: document.getElementById('ap-edu').value || '(nie podano)',
+    doswiadczenie_lat: document.getElementById('ap-exp-lbl').textContent,
+    opis: desc,
+    zrodlo: 'Formularz kariery – strona www'
+  };
 
-  document.getElementById('appl-ok-name').textContent = name;
-  document.getElementById('appl-form').classList.add('hidden');
-  document.getElementById('appl-ok').classList.remove('hidden');
-  lucide.createIcons();
+  try {
+    const res = await fetch('https://formspree.io/f/mykolaol', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (res.ok) {
+      document.getElementById('appl-ok-name').textContent = name;
+      document.getElementById('appl-form').classList.add('hidden');
+      document.getElementById('appl-ok').classList.remove('hidden');
+      lucide.createIcons();
+    } else {
+      throw new Error('Błąd serwera');
+    }
+  } catch(e) {
+    btn.disabled = false;
+    btn.innerHTML = '<i data-lucide="send" class="w-4 h-4"></i>Wyślij Aplikację';
+    alert('Wystąpił błąd wysyłania. Proszę zadzwonić bezpośrednio: +48 123 456 789');
+    lucide.createIcons();
+  }
 }
 
 function resetAppl() {
@@ -1268,9 +1281,12 @@ function resetAppl() {
   document.getElementById('ap-exp-lbl').textContent = '5';
   const sl = document.getElementById('ap-exp');
   sl.style.background = `linear-gradient(to right,#f57c00 0%,#f57c00 ${(5/35)*100}%,#333 ${(5/35)*100}%,#333 100%)`;
+  const btn = document.getElementById('appl-submit-btn');
+  btn.disabled = false;
+  btn.innerHTML = '<i data-lucide="send" class="w-4 h-4"></i>Wyślij Aplikację';
+  lucide.createIcons();
 }
 
-// init exp slider
 (function(){
   const s = document.getElementById('ap-exp');
   s.addEventListener('input', () => {
@@ -1283,11 +1299,9 @@ function resetAppl() {
 
 // ════════════════════════════════════════════════════════
 //  GUIDED CHATBOT LEAD BOT
-//  Steps: 1=what to build, 2=area, 3=phone
-//  Then prepares email payload via EmailJS/Formspree
 // ════════════════════════════════════════════════════════
 let chatOpen  = false;
-let chatStep  = 0;  // 0=greeting, 1=what, 2=area, 3=phone, 4=done
+let chatStep  = 0;
 let leadData  = { what: '', area: '', phone: '' };
 const msgsEl  = () => document.getElementById('chat-msgs');
 const qrEl    = () => document.getElementById('chat-qr');
@@ -1295,8 +1309,8 @@ const qrEl    = () => document.getElementById('chat-qr');
 const STEPS = {
   0: { bot: 'Dzień dobry! 👋 Jestem asystentem Firmy Kozioł. Pomogę Ci uzyskać wstępną wycenę.\n\nCo chcesz zbudować lub wyremontować?', qr: ['Dom jednorodzinny','Fundamenty','Dach','Ściany żelbetowe','Remont','Inny projekt'] },
   1: { bot: (v) => `Świetnie — <strong>${v}</strong>. Jaką powierzchnię planujesz? (podaj w m²)`, qr: ['do 100 m²','100–200 m²','200–350 m²','350–500 m²','powyżej 500 m²'] },
-  2: { bot: (v) => `Rozumiem — <strong>${v}</strong>. Na koniec: podaj swój numer telefonu, a nasz specjalista oddzwoni z dokładną wyceną w ciągu 24h.`, qr: [] },
-  3: { bot: () => `✅ Dziękujemy! Zebraliśmy wszystkie informacje:<br/><br/>🏗 <b>Zakres:</b> ${leadData.what}<br/>📐 <b>Powierzchnia:</b> ${leadData.area}<br/>📞 <b>Telefon:</b> ${leadData.phone}<br/><br/>Nasz specjalista skontaktuje się z Tobą wkrótce!`, qr: ['Zacznij od nowa'] }
+  2: { bot: (v) => `Rozumiem — <strong>${v}</strong>. Podaj swój numer telefonu — nasz specjalista oddzwoni z dokładną wyceną w ciągu 1h roboczej.`, qr: [] },
+  3: { bot: () => `✅ Super! Zebraliśmy Twoje dane:<br/><br/>🏗 <b>Zakres:</b> ${leadData.what}<br/>📐 <b>Powierzchnia:</b> ${leadData.area}<br/>📞 <b>Telefon:</b> ${leadData.phone}<br/><br/>Nasz specjalista oddzwoni do Ciebie w ciągu godziny!<br/><br/>Lub zadzwoń sam: <a href="tel:+48123456789" class="text-amber font-semibold">+48 123 456 789</a>`, qr: ['Zacznij od nowa'] }
 };
 
 function addMsg(text, isUser = false) {
@@ -1366,23 +1380,24 @@ function botRespond() {
   }, 900);
 }
 
-function sendLead() {
-  // ── EmailJS integration placeholder ─────────────────
-  // emailjs.send('SERVICE_ID', 'TEMPLATE_ID', {
-  //   what:  leadData.what,
-  //   area:  leadData.area,
-  //   phone: leadData.phone,
-  //   source: 'Chatbot Lead Bot',
-  // });
+async function sendLead() {
+  const payload = {
+    _subject: 'Nowy lead z chatbota – Firma Kozioł',
+    rodzaj_prac: leadData.what,
+    powierzchnia: leadData.area,
+    telefon: leadData.phone,
+    zrodlo: 'Chatbot – strona www'
+  };
 
-  // ── Formspree integration placeholder ───────────────
-  // fetch('https://formspree.io/f/YOUR_LEAD_FORM_ID', {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({ ...leadData, source: 'Koziol Chatbot' })
-  // });
-
-  console.log('[Koziol Lead Bot] Nowy lead:', leadData);
+  try {
+    await fetch('https://formspree.io/f/mykolaol', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) {
+    console.warn('Chatbot lead send failed:', e);
+  }
 }
 
 function chatSend() {
@@ -1405,10 +1420,7 @@ function chatToggle() {
   lucide.createIcons();
 }
 
-// ── Shake keyframe ──────────────────────────────────────
 document.head.insertAdjacentHTML('beforeend',`<style>@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}</style>`);
-
-// ── Final icon pass ─────────────────────────────────────
 setTimeout(() => lucide.createIcons(), 300);
 </script>
 </body>
