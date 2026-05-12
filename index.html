@@ -1303,14 +1303,16 @@ function resetAppl() {
 let chatOpen  = false;
 let chatStep  = 0;
 let leadData  = { what: '', area: '', phone: '' };
+// Full conversation log: [{role:'bot'|'user', text:'...'}]
+let chatHistory = [];
 const msgsEl  = () => document.getElementById('chat-msgs');
 const qrEl    = () => document.getElementById('chat-qr');
 
 const STEPS = {
   0: { bot: 'Dzień dobry! 👋 Jestem asystentem Firmy Kozioł. Pomogę Ci uzyskać wstępną wycenę.\n\nCo chcesz zbudować lub wyremontować?', qr: ['Dom jednorodzinny','Fundamenty','Dach','Ściany żelbetowe','Remont','Inny projekt'] },
-  1: { bot: (v) => `Świetnie — <strong>${v}</strong>. Jaką powierzchnię planujesz? (podaj w m²)`, qr: ['do 100 m²','100–200 m²','200–350 m²','350–500 m²','powyżej 500 m²'] },
-  2: { bot: (v) => `Rozumiem — <strong>${v}</strong>. Podaj swój numer telefonu — nasz specjalista oddzwoni z dokładną wyceną w ciągu 1h roboczej.`, qr: [] },
-  3: { bot: () => `✅ Super! Zebraliśmy Twoje dane:<br/><br/>🏗 <b>Zakres:</b> ${leadData.what}<br/>📐 <b>Powierzchnia:</b> ${leadData.area}<br/>📞 <b>Telefon:</b> ${leadData.phone}<br/><br/>Nasz specjalista oddzwoni do Ciebie w ciągu godziny!<br/><br/>Lub zadzwoń sam: <a href="tel:+48123456789" class="text-amber font-semibold">+48 123 456 789</a>`, qr: ['Zacznij od nowa'] }
+  1: { bot: (v) => `Świetnie — ${v}. Jaką powierzchnię planujesz? (podaj w m²)`, qr: ['do 100 m²','100–200 m²','200–350 m²','350–500 m²','powyżej 500 m²'] },
+  2: { bot: (v) => `Rozumiem — ${v}. Podaj swój numer telefonu — nasz specjalista oddzwoni z dokładną wyceną w ciągu 1h roboczej.`, qr: [] },
+  3: { bot: () => `✅ Super! Zebraliśmy Twoje dane:\n\n🏗 Zakres: ${leadData.what}\n📐 Powierzchnia: ${leadData.area}\n📞 Telefon: ${leadData.phone}\n\nNasz specjalista oddzwoni do Ciebie w ciągu godziny!\n\nLub zadzwoń sam: <a href="tel:+48123456789" class="text-amber font-semibold underline">+48 123 456 789</a>`, qr: ['Zacznij od nowa'] }
 };
 
 function addMsg(text, isUser = false) {
@@ -1327,6 +1329,9 @@ function addMsg(text, isUser = false) {
   }
   msgsEl().appendChild(wrap);
   msgsEl().scrollTop = msgsEl().scrollHeight;
+  // Save plain text to history (strip HTML tags)
+  const plain = text.replace(/<[^>]+>/g, '');
+  chatHistory.push({ role: isUser ? 'Klient' : 'Bot', text: plain });
   lucide.createIcons();
 }
 
@@ -1354,7 +1359,13 @@ function handleAnswer(text) {
   addMsg(text, true);
   qrEl().innerHTML = '';
 
-  if (text === 'Zacznij od nowa') { chatStep = 0; leadData = {what:'',area:'',phone:''}; setTimeout(botRespond, 600); return; }
+  if (text === 'Zacznij od nowa') {
+    chatStep = 0;
+    leadData = {what:'',area:'',phone:''};
+    chatHistory = [];
+    setTimeout(botRespond, 600);
+    return;
+  }
 
   if (chatStep === 1)      { leadData.what  = text; chatStep = 2; }
   else if (chatStep === 2) { leadData.area  = text; chatStep = 3; }
@@ -1381,11 +1392,17 @@ function botRespond() {
 }
 
 async function sendLead() {
+  // Build readable conversation transcript
+  const transcript = chatHistory
+    .map(m => `[${m.role}]: ${m.text}`)
+    .join('\n');
+
   const payload = {
-    _subject: 'Nowy lead z chatbota – Firma Kozioł',
-    rodzaj_prac: leadData.what,
-    powierzchnia: leadData.area,
-    telefon: leadData.phone,
+    _subject: `📞 Nowy lead z chatbota – ${leadData.phone} – Firma Kozioł`,
+    '📞 Telefon klienta': leadData.phone,
+    '🏗 Rodzaj prac': leadData.what,
+    '📐 Powierzchnia': leadData.area,
+    '📋 Pełna rozmowa': transcript,
     zrodlo: 'Chatbot – strona www'
   };
 
