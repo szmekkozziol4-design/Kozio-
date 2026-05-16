@@ -535,14 +535,16 @@ input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 18px rgba(245,124,0
 
 <script>
 // ══════════════════════════════════════════════════════
-// WEBHOOK URL — jedyne miejsce które zmieniasz gdy
-// tworzysz nowy scenariusz w Make
+// GEMINI API — bezpośrednie połączenie
 // ══════════════════════════════════════════════════════
-const MAKE_WEBHOOK = 'https://hook.eu1.make.com/l6ihw7c4m1ufaoxonjhfy6ishidam3pi';
+const GEMINI_KEY = 'AIzaSyCcs7Ux1hZ8Y53BJSOiOS4VL9BI4qnoWcQ';
+const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + GEMINI_KEY;
+
+const SYSTEM_PROMPT = 'Jestes profesjonalnym asystentem firmy budowlanej Koziol z Krakowa. Firma istnieje od 1994 roku - trzy pokolenia rodziny Koziol. Dzialamy na terenie Krakowa i calej Malopolski. Telefon: +48 123 456 789, Email: biuro@firmakoziol.pl. Godziny: Pn-Pt 7:00-17:00, Sob 8:00-13:00. USLUGI I CENY: Fundamenty (lawy, plyty, hydroizolacje): 900-1100 zl/m2. Stan surowy (mury, stropy, schody, wience): 2800-3500 zl/m2. Dachy (wiezby, dachowka, blacha, EPDM): 500-700 zl/m2. Zelbet (sciany monolityczne, szalunki, zbrojenia): 700-900 zl/m2. Remonty (wyburzenia, przebudowy, termomodernizacja): wycena indywidualna. Posiadamy wlasne ladownarki teleskopowe. Kadra: inzynierowie budownictwa z wyzszym wyksztalceniem. Gwarancja na kazda realizacje. ZASADY: Odpowiadaj WYLACZNIE po polsku. Badz konkretny i przyjazny. Max 3-4 zdania. Jesli klient pyta o wycene konkretnego projektu zapytaj o jego dane kontaktowe (imie i telefon). Nie wymyslaj cen spoza listy powyzej.';
 
 let chatOpen = false;
 let aiLoading = false;
-let konwersacja = []; // historia dla Gemini
+let konwersacja = [];
 
 function chatToggle() {
   chatOpen = !chatOpen;
@@ -578,8 +580,8 @@ function pokazTyping() {
 function ukryjTyping() { const t=document.getElementById('typing-ind'); if(t) t.remove(); }
 
 function powitanie() {
-  dodajBanika('Dzień dobry! 👋 Jestem asystentem AI Firmy Kozioł.\n\nOdpowiem na pytania o usługi, ceny i terminy. Mogę też pomóc umówić bezpłatną wycenę.\n\nW czym mogę pomóc?');
-  konwersacja.push({role:'model', parts:[{text:'Dzień dobry! Jestem asystentem AI Firmy Kozioł. W czym mogę pomóc?'}]});
+  dodajBanika('Dzien dobry! Jestem asystentem AI Firmy Koziol.\n\nOdpowiem na pytania o uslugi, ceny i terminy. Moge tez pomoc umowic bezplatna wycene.\n\nW czym moge pomoc?');
+  konwersacja.push({role:'model', parts:[{text:'Dzien dobry! Jestem asystentem AI Firmy Koziol. W czym moge pomoc?'}]});
 }
 
 async function chatSend() {
@@ -595,23 +597,30 @@ async function chatSend() {
   pokazTyping();
 
   try {
-    const res = await fetch(MAKE_WEBHOOK, {
+    const body = {
+      system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+      contents: konwersacja
+    };
+
+    const res = await fetch(GEMINI_URL, {
       method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({ message: txt, history: konwersacja })
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(body)
     });
-    const odp = await res.text();
+
+    const data = await res.json();
     ukryjTyping();
 
-    if (odp && odp.trim()) {
+    const odp = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (odp) {
       dodajBanika(odp.trim());
       konwersacja.push({role:'model', parts:[{text:odp.trim()}]});
     } else {
-      dodajBanika('Przepraszam za chwilowy problem. Proszę zadzwonić: <a href="tel:+48123456789" style="color:#f57c00;font-weight:600">+48 123 456 789</a>');
+      dodajBanika('Przepraszam za chwilowy problem. Prosze zadzwonic: <a href="tel:+48123456789" style="color:#f57c00;font-weight:600">+48 123 456 789</a>');
     }
   } catch(e) {
     ukryjTyping();
-    dodajBanika('Problem z połączeniem. Proszę zadzwonić: <a href="tel:+48123456789" style="color:#f57c00;font-weight:600">+48 123 456 789</a>');
+    dodajBanika('Problem z polaczeniem. Prosze zadzwonic: <a href="tel:+48123456789" style="color:#f57c00;font-weight:600">+48 123 456 789</a>');
   }
 
   aiLoading = false;
